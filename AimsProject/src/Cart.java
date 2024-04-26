@@ -23,6 +23,13 @@ public class Cart {
 		}
 	}
 	
+	/*
+	public void addDigitalVideoDisc(DigitalVideoDisc... dvdList) {
+		for(DigitalVideoDisc disc : dvdList) {
+			addDigitalVideoDisc(disc);
+		}
+	}
+	*/
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		int discPosition = -1;
 		for (int i = 0; i < MAX_NUMBERS_ORDERED; ++i) {
