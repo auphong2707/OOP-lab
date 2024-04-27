@@ -1,3 +1,5 @@
+package hust.soict.dsai.aims.disc;
+
 import java.util.Objects;
 
 public class DigitalVideoDisc {
