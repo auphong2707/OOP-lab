@@ -69,4 +69,15 @@ public class Cart {
 		
 		return result;
 	}
+	
+	public void print() {
+		System.out.println("***********************CART***********************");
+		System.out.println("Ordered Items:");
+		for(int i = 0; i < qtyOrdered; ++i) {
+			DigitalVideoDisc disc = itemsOrdered[i];
+			System.out.println((i + 1) + ". " + disc);
+		}
+		System.out.println("Total cost: " + totalCost());
+		System.out.println("***************************************************");
+	}
 }
