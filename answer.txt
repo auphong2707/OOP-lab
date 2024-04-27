@@ -1,0 +1,7 @@
+GitHub repo: https://github.com/auphong2707/OOP-lab.git
+
+2.1. Can't add the method addDigitalVideoDisc which pass an arbitrary number for DVD because it has the same input type as above method. I prefer the previous method.
+3.
+- After call swap(jungleDVD, cinderellaDVD), 2 variables are swapped but only in the method (not reference) then it's doesn't change any variables which are outside of the method
+- After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()), the setTitle method is activated through reference to the jungleDVD object then the object has a new title.
+- There is no available swap method unless swap all the attributes between these two.
