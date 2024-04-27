@@ -54,6 +54,10 @@ public class DigitalVideoDisc {
 		return cost;
 	}
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(category, cost, director, length, title);
