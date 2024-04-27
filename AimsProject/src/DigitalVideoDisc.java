@@ -83,5 +83,7 @@ public class DigitalVideoDisc {
 		return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
 	}
 	
-	
+	public boolean isMatching(String title) {
+		return this.title.equals(title);
+	}
 }

@@ -92,4 +92,16 @@ public class Cart {
 		System.out.println("Not found!");
 		return false;
 	}
+	
+	public boolean search(String title) {
+		for(int i = 0; i < qtyOrdered; ++i) {
+			DigitalVideoDisc disc = itemsOrdered[i];
+			if(disc.isMatching(title)) {
+				System.out.println("Found in cart: " + disc);
+				return true;
+			}
+		}
+		System.out.println("Not found!");
+		return false;
+	}
 }
