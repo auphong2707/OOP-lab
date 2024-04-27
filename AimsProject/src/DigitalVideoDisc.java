@@ -74,4 +74,11 @@ public class DigitalVideoDisc {
 				&& Objects.equals(director, other.director) && length == other.length
 				&& Objects.equals(title, other.title);
 	}
+
+	@Override
+	public String toString() {
+		return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+	}
+	
+	
 }
