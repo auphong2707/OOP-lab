@@ -46,4 +46,14 @@ public class Store {
 		qtyStore -= 1;
 		System.out.println("The disc has been removed successfully");
 	}
+	
+	public void print() {
+		System.out.println("***********************STORE***********************");
+		System.out.println("Store list:");
+		for(int i = 0; i < qtyStore; ++i) {
+			DigitalVideoDisc disc = itemsInStore[i];
+			System.out.println((i + 1) + ". " + disc);
+		}
+		System.out.println("****************************************************");
+	}
 }
