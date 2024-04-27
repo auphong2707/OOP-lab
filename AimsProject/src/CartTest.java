@@ -1,4 +1,4 @@
-import java.io.DataInput;
+
 
 public class CartTest {
 	public static void main(String[] args) {
@@ -16,9 +16,7 @@ public class CartTest {
 				"Animation", 18.99f);
 		cart.addDigitalVideoDisc(dvd3);
 		
-		cart.search(0);
-		cart.search(1);
-		cart.search(2);
-		cart.search(4);
+		cart.search("Aladin");
+		cart.search("Shawshank redemption");
 	}
 }
