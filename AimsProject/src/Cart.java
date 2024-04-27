@@ -80,4 +80,16 @@ public class Cart {
 		System.out.println("Total cost: " + totalCost());
 		System.out.println("***************************************************");
 	}
+	
+	public boolean search(int id) {
+		for(int i = 0; i < qtyOrdered; ++i) {
+			DigitalVideoDisc disc = itemsOrdered[i];
+			if(disc.getId() == id) {
+				System.out.println("Found in cart: " + disc);
+				return true;
+			}
+		}
+		System.out.println("Not found!");
+		return false;
+	}
 }
