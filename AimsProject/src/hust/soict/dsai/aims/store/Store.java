@@ -31,9 +31,9 @@ public class Store {
 	public void print() {
 		System.out.println("***********************STORE***********************");
 		System.out.println("Store list:");
-		for(int i = 0; i < qtyStore; ++i) {
-			DigitalVideoDisc disc = itemsInStore[i];
-			System.out.println((i + 1) + ". " + disc);
+		for(int i = 0; i < itemsInStore.size(); ++i) {
+			Media media = itemsInStore.get(i);
+			System.out.println((i + 1) + ". " + media);
 		}
 		System.out.println("****************************************************");
 	}
