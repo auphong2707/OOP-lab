@@ -1,5 +1,5 @@
 package hust.soict.dsai.test.disc;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 
 public class TestPassingParameter {
 	public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class TestPassingParameter {
 	
 	public static void changeTitle(DigitalVideoDisc dvd, String title) {
 		String oldTitle = dvd.getTitle();
-		dvd.setTitle(title);
+		//dvd.setTitle(title);
 		dvd = new DigitalVideoDisc(oldTitle);
 	}
 }

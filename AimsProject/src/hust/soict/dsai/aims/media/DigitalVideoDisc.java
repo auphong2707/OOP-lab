@@ -1,27 +1,17 @@
-package hust.soict.dsai.aims.disc;
+package hust.soict.dsai.aims.media;
 
 import java.util.Objects;
 
-public class DigitalVideoDisc {
+public class DigitalVideoDisc extends Media{
 	private static int nbDigitalVideoDiscs = 0;
 	
-	private String title;
-	private String category;
 	private String director;
 	private int length;
-	private float cost;
-	
-	private int id;
 	
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.director = director;
+		super(nbDigitalVideoDiscs++, title, category, cost);
 		this.length = length;
-		this.cost = cost;
-		
-		this.id = nbDigitalVideoDiscs++;
+		this.director = director;
 	}
 	
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
@@ -37,32 +27,16 @@ public class DigitalVideoDisc {
 	}
 	
 	
-	public String getTitle() {
-		return title;
-	}
-	public String getCategory() {
-		return category;
-	}
 	public String getDirector() {
 		return director;
 	}
 	public int getLength() {
 		return length;
 	}
-	public float getCost() {
-		return cost;
-	}
-	public int getId() {
-		return id;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(category, cost, director, length, title);
+		return Objects.hash(getCategory(), getCost(), director, length, getTitle());
 	}
 
 	@Override
@@ -74,18 +48,18 @@ public class DigitalVideoDisc {
 		if (getClass() != obj.getClass())
 			return false;
 		DigitalVideoDisc other = (DigitalVideoDisc) obj;
-		return Objects.equals(category, other.category)
-				&& Float.floatToIntBits(cost) == Float.floatToIntBits(other.cost)
+		return Objects.equals(getCategory(), other.getCategory())
+				&& Float.floatToIntBits(getCost()) == Float.floatToIntBits(other.getCost())
 				&& Objects.equals(director, other.director) && length == other.length
-				&& Objects.equals(title, other.title);
+				&& Objects.equals(getTitle(), other.getTitle());
 	}
 
 	@Override
 	public String toString() {
-		return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+		return "DVD - " + getTitle() + " - " + getCategory() + " - " + director + " - " + length + ": " + getCost() + " $";
 	}
 	
 	public boolean isMatching(String title) {
-		return this.title.equals(title);
+		return this.getTitle().equals(title);
 	}
 }
