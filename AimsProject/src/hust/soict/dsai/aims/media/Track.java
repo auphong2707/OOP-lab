@@ -2,7 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Objects;
 
-public class Track {
+public class Track implements Playable{
 
 	private String title;
 	private int length;
@@ -36,5 +36,11 @@ public class Track {
 			return false;
 		Track other = (Track) obj;
 		return length == other.length && Objects.equals(title, other.title);
+	}
+
+	@Override
+	public void play() {
+		System.out.println("Playing DVD: " + this.title);
+		System.out.println("DVD length: " + this.length);
 	}
 }

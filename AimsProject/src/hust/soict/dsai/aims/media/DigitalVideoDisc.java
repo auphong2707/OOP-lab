@@ -2,7 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Objects;
 
-public class DigitalVideoDisc extends Disc{
+public class DigitalVideoDisc extends Disc implements Playable{
 	private static int nbDigitalVideoDiscs = 0;
 	
 	private String director;
@@ -59,5 +59,11 @@ public class DigitalVideoDisc extends Disc{
 	
 	public boolean isMatching(String title) {
 		return this.getTitle().equals(title);
+	}
+
+	@Override
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 }
