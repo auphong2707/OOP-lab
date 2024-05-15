@@ -5,8 +5,34 @@ import java.util.List;
 import hust.soict.dsai.aims.media.Media;
 
 public class Cart {
+	public static final int MAX_NUMBERS_ORDERED = 20;
 	private List<Media> itemsOrdered = new ArrayList<Media>();
 	
+	public void addMedia(Media media) {
+		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
+			System.out.println("The cart is almost full" );
+			return;
+		}
+		
+		itemsOrdered.add(media);
+		System.out.println("The item has been added");
+	}
+	
+	public void addMedia(Media... mediaList) {
+		for(Media media : mediaList) {
+			addMedia(media);
+		}
+	}
+	
+	public void removeMedia(Media media) {
+		if (!itemsOrdered.contains(media)) {
+			System.out.println("The item is not in the cart");
+			return;
+		}
+		
+		itemsOrdered.remove(media);
+		System.out.println("The item has been removed successfully");
+	}
 	
 	public float totalCost() {
 		float result = 0f;
