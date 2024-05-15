@@ -8,6 +8,26 @@ public class Store {
 	
 	private List<Media> itemsInStore = new ArrayList<Media>();
 	
+	public void addMedia(Media media) {
+		if(itemsInStore.contains(media)) {
+			System.out.println("The item is already in the Store!");
+		}
+		else {
+			itemsInStore.add(media);
+			System.out.println("Added successfully!");
+		}
+	}
+	
+	public void removeMedia(Media media) {
+		if(!itemsInStore.contains(media)) {
+			System.out.println("The item is not in the Store!");
+		}
+		else {
+			itemsInStore.remove(media);
+			System.out.println("Removed successfully!");
+		}
+	}
+	
 	public void print() {
 		System.out.println("***********************STORE***********************");
 		System.out.println("Store list:");
