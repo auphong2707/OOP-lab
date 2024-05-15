@@ -2,7 +2,6 @@ package hust.soict.dsai.aims.cart;
 import java.util.ArrayList;
 import java.util.List;
 
-import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 
 public class Cart {
@@ -11,7 +10,7 @@ public class Cart {
 	
 	public float totalCost() {
 		float result = 0f;
-		for(DigitalVideoDisc item : itemsOrdered) {
+		for(Media item : itemsOrdered) {
 			if (item == null) break;
 			result += item.getCost();
 		}
@@ -22,8 +21,8 @@ public class Cart {
 	public void print() {
 		System.out.println("***********************CART***********************");
 		System.out.println("Ordered Items:");
-		for(int i = 0; i < qtyOrdered; ++i) {
-			DigitalVideoDisc disc = itemsOrdered[i];
+		for(int i = 0; i < itemsOrdered.size(); ++i) {
+			Media disc = itemsOrdered.get(i);
 			System.out.println((i + 1) + ". " + disc);
 		}
 		System.out.println("Total cost: " + totalCost());
@@ -31,8 +30,8 @@ public class Cart {
 	}
 	
 	public boolean search(int id) {
-		for(int i = 0; i < qtyOrdered; ++i) {
-			DigitalVideoDisc disc = itemsOrdered[i];
+		for(int i = 0; i < itemsOrdered.size(); ++i) {
+			Media disc = itemsOrdered.get(i);
 			if(disc.getId() == id) {
 				System.out.println("Found in cart: " + disc);
 				return true;
@@ -43,9 +42,9 @@ public class Cart {
 	}
 	
 	public boolean search(String title) {
-		for(int i = 0; i < qtyOrdered; ++i) {
-			DigitalVideoDisc disc = itemsOrdered[i];
-			if(disc.isMatching(title)) {
+		for(int i = 0; i < itemsOrdered.size(); ++i) {
+			Media disc = itemsOrdered.get(i);
+			if(disc.getTitle().equals(title)) {
 				System.out.println("Found in cart: " + disc);
 				return true;
 			}
