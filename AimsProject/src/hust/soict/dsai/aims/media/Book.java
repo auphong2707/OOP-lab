@@ -22,7 +22,7 @@ public class Book extends Media{
 	}
 	
 	public void removeAuthor(String anotherName) {
-		if(authors.contains(anotherName)) {
+		if(!authors.contains(anotherName)) {
 			System.out.println("There is no author " + anotherName + " in the list!");
 		}
 		else {
