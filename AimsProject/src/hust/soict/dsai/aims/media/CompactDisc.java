@@ -7,9 +7,9 @@ public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	private List<Track> tracks;
 	
-	public CompactDisc(int id, String title, String category, String director, int length, float cost, String artist,
+	public CompactDisc(String title, String category, String director, int length, float cost, String artist,
 			List<Track> tracks) {
-		super(id, title, category, director, length, cost);
+		super(nbMedia++, title, category, director, length, cost);
 		this.artist = artist;
 		this.tracks = tracks;
 	}
@@ -58,10 +58,10 @@ public class CompactDisc extends Disc implements Playable{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("CD - " + "Title: " + getTitle() + " - Category: " + getCategory() + ": " + getCost() + " $");
+		sb.append("CD - " + "ID: " + getId() + " - Title: " + getTitle() + " - Category: " + getCategory() + ": " + getCost() + " $");
 		
 		for(Track track : tracks) {
-			sb.append("\n" + track.toString());
+			sb.append("\n\t" + track.toString());
 		}
 		
 		return sb.toString();

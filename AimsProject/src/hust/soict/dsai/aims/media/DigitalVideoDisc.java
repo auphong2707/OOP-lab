@@ -3,13 +3,11 @@ package hust.soict.dsai.aims.media;
 import java.util.Objects;
 
 public class DigitalVideoDisc extends Disc implements Playable{
-	private static int nbDigitalVideoDiscs = 0;
-	
 	private String director;
 	private int length;
 	
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super(nbDigitalVideoDiscs++, title, category, director, length, cost);
+		super(nbMedia++, title, category, director, length, cost);
 	}
 	
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
@@ -54,7 +52,7 @@ public class DigitalVideoDisc extends Disc implements Playable{
 
 	@Override
 	public String toString() {
-		return "DVD - " + "Title: " + getTitle() + " - Category: " + getCategory() + " - Director: " 
+		return "DVD " + " - ID: " + getId() + " - Title: " + getTitle() + " - Category: " + getCategory() + " - Director: " 
 				+ director + " - Length: " + length + ": " + getCost() + " $";
 	}
 	

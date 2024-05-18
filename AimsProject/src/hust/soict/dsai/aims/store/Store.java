@@ -28,6 +28,28 @@ public class Store {
 		}
 	}
 	
+	public Media search(int id) {
+		for(Media media : itemsInStore) {
+			if(media.getId() == id) {
+				System.out.println("Found");
+				return media;
+			}
+		}
+		System.out.println("Not found");
+		return null;
+	}
+	
+	public Media search(String title) {
+		for(Media media : itemsInStore) {
+			if(media.getTitle().equals(title)) {
+				System.out.println("Found");
+				return media;
+			}
+		}
+		System.out.println("Not found");
+		return null;
+	}
+	
 	public void print() {
 		System.out.println("***********************STORE***********************");
 		System.out.println("Store list:");

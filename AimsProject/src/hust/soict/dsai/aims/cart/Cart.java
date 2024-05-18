@@ -55,27 +55,42 @@ public class Cart {
 		System.out.println("***************************************************");
 	}
 	
-	public boolean search(int id) {
+	public Media search(int id) {
 		for(int i = 0; i < itemsOrdered.size(); ++i) {
-			Media disc = itemsOrdered.get(i);
-			if(disc.getId() == id) {
-				System.out.println("Found in cart: " + disc);
-				return true;
+			Media media = itemsOrdered.get(i);
+			if(media.getId() == id) {
+				System.out.println("Found in cart: " + media);
+				return media;
 			}
 		}
 		System.out.println("Not found!");
-		return false;
+		return null;
 	}
 	
-	public boolean search(String title) {
+	public Media search(String title) {
 		for(int i = 0; i < itemsOrdered.size(); ++i) {
-			Media disc = itemsOrdered.get(i);
-			if(disc.getTitle().equals(title)) {
-				System.out.println("Found in cart: " + disc);
-				return true;
+			Media media = itemsOrdered.get(i);
+			if(media.getTitle().equals(title)) {
+				System.out.println("Found in cart: " + media);
+				return media;
 			}
 		}
 		System.out.println("Not found!");
-		return false;
+		return null;
+	}
+	
+	public void emptyCart() {
+		itemsOrdered.clear();
+	}
+	
+	public void sortCart(int choice) {
+		if (choice == 0) {
+			itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
+			System.out.println("Cart sorted !!!");
+		}
+		else if (choice == 1) {
+			itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
+			System.out.println("Cart sorted!!!");
+		}
 	}
 }

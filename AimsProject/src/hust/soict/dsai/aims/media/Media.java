@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public abstract class Media {
+	static int nbMedia = 0;
 	public static final Comparator<Media> COMPARE_BY_TITLE_COST =
 			new MediaComparatorByTitleCost();
 	public static final Comparator<Media> COMPARE_BY_COST_TITLE =
