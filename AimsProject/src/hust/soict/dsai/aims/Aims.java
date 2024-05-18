@@ -20,7 +20,7 @@ public class Aims {
 	private static Runnable lastRunnable;
 	
 	private static String getAttribute(String thing) {
-		System.out.println(thing + ": ");
+		System.out.print(thing + ": ");
 		return scanner.nextLine();
 	}
 	
