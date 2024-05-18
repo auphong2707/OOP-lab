@@ -30,11 +30,4 @@ public class Book extends Media{
 			System.out.println("Removed successfully!");
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "Book" + " - Title: " + getTitle() + " - Category: "
-				+ getCategory() + ": " + getCost() + " $";
-	}
-	
 }
