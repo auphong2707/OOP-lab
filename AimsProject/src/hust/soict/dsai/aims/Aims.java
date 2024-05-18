@@ -21,13 +21,13 @@ public class Aims {
 	
 	private static String getAttribute(String thing) {
 		System.out.println(thing + ": ");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public static int makeChoice(int numberOfChoices) {
 		int command = 0;
 		while(true) {
-			command = scanner.nextInt();
+			command = Integer.parseInt(scanner.nextLine());
 			if (command >= 0 && command < numberOfChoices) break;
 			else System.out.println("Invalid");
 		}
@@ -129,7 +129,7 @@ public class Aims {
 			command = makeChoice(2);
 			if(command == 0) {
 				System.out.print("Title: ");
-				String title = scanner.next();
+				String title = scanner.nextLine();
 				Media media = store.search(title);
 				if(media != null) store.removeMedia(media);
 			}
@@ -168,7 +168,7 @@ public class Aims {
 			Media chosenMedia = null;
 			while(true) {
 				System.out.print("Title: ");
-				String title = scanner.next();
+				String title = scanner.nextLine();
 				
 				chosenMedia = store.search(title);
 				if(chosenMedia != null) break;
@@ -237,7 +237,7 @@ public class Aims {
 			}
 			else {
 				System.out.println("Title: ");
-				String title = scanner.next();
+				String title = scanner.nextLine();
 				cart.search(title);
 			}
 		}
@@ -248,14 +248,14 @@ public class Aims {
 		}
 		else if (command == 3) {
 			System.out.print("Title: ");
-			String title = scanner.next();
+			String title = scanner.nextLine();
 			
 			Media chosenMedia = cart.search(title);
 			if(chosenMedia != null) cart.removeMedia(chosenMedia);
 		}
 		else if (command == 4) {
 			System.out.print("Title: ");
-			String title = scanner.next();
+			String title = scanner.nextLine();
 			
 			Media chosenMedia = cart.search(title);
 			if(chosenMedia instanceof Playable) ((Playable) chosenMedia).play();
