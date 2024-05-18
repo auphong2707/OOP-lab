@@ -22,6 +22,11 @@ public class Track implements Playable{
 	}
 
 	@Override
+	public String toString() {
+		return "Track - " + "Title: " + title + " - Length: " + length;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

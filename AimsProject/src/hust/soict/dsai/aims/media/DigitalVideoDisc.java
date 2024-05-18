@@ -54,7 +54,8 @@ public class DigitalVideoDisc extends Disc implements Playable{
 
 	@Override
 	public String toString() {
-		return "DVD - " + getTitle() + " - " + getCategory() + " - " + director + " - " + length + ": " + getCost() + " $";
+		return "DVD - " + "Title: " + getTitle() + " - Category: " + getCategory() + " - Director: " 
+				+ director + " - Length: " + length + ": " + getCost() + " $";
 	}
 	
 	public boolean isMatching(String title) {
