@@ -21,7 +21,7 @@ public class Aims {
 		anOrder.addMedia(dvd3);
 		
 		// Test remove and add
-		anOrder.removeDigitalVideoDisc(dvd2);
+		anOrder.removeMedia(dvd2);
 		anOrder.addMedia(dvd2);
 		
 		// Print total cost of the items in the cart
