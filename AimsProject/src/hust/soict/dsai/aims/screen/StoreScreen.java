@@ -1,6 +1,10 @@
 package hust.soict.dsai.aims.screen;
 
+import java.lang.Math;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,6 +20,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.dsai.aims.media.Book;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.store.Store;
@@ -25,6 +31,20 @@ import javax.swing.Box;
 
 public class StoreScreen extends JFrame{
 	private Store store;
+	
+	public StoreScreen(Store store)
+	{
+		this.store = store;
+		Container cp = getContentPane();
+		cp.setLayout(new BorderLayout());
+		
+		cp.add(createNorth(), BorderLayout.NORTH);
+		cp.add(createCenter(), BorderLayout.CENTER);
+		
+		setVisible(true);
+		setTitle("Store");
+		setSize(1024, 768);
+	}
 	
 	JPanel createNorth() {
 		JPanel north = new JPanel();
@@ -80,7 +100,7 @@ public class StoreScreen extends JFrame{
 		center.setLayout(new GridLayout(3, 3, 2, 2));
 		
 		ArrayList<Media> mediaInStore = store.getItemsInStore();
-		for(int i = 0; i < 9; i++) {
+		for(int i = 0; i < Math.min(9, mediaInStore.size()); i++) {
 			MediaStore cell = new MediaStore(mediaInStore.get(i));;
 			center.add(cell);
 		}
@@ -104,7 +124,7 @@ public class StoreScreen extends JFrame{
 			JPanel container = new JPanel();
 			container.setLayout(new FlowLayout(FlowLayout.CENTER));
 			
-			container.add(new JButton("Play"));
+			container.add(new JButton("Add to Cart"));
 			if(media instanceof Playable) {
 				container.add(new JButton("Play"));
 			}
@@ -117,5 +137,22 @@ public class StoreScreen extends JFrame{
 			
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		}
+	}
+	
+	public static void main(String[] args) {
+		Store store = new Store();
+		
+		store.addMedia(new DigitalVideoDisc("Mashle"));
+		store.addMedia(new DigitalVideoDisc("Re:zero"));
+		store.addMedia(new DigitalVideoDisc("AoT"));
+		store.addMedia(new DigitalVideoDisc("Naruto"));
+		store.addMedia(new DigitalVideoDisc("Boruto"));
+		store.addMedia(new DigitalVideoDisc("Jujutsu Kaisen"));
+		store.addMedia(new DigitalVideoDisc("Dungeon Meshi"));
+		store.addMedia(new DigitalVideoDisc("Honkai"));
+		store.addMedia(new Book("Genshin", "Action", 12));
+		store.addMedia(new DigitalVideoDisc("Mashle 2"));
+		
+		new StoreScreen(store);
 	}
 }
