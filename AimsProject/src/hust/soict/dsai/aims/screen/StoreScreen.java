@@ -31,16 +31,20 @@ import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.store.Store;
+import hust.soict.dsai.aims.cart.Cart;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 
 public class StoreScreen extends JFrame{
 	private Store store;
+	private Cart cart;
 	
-	public StoreScreen(Store store)
+	public StoreScreen(Store store, Cart cart)
 	{
 		this.store = store;
+		this.cart = cart;
+		
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
@@ -132,7 +136,11 @@ public class StoreScreen extends JFrame{
 			JPanel container = new JPanel();
 			container.setLayout(new FlowLayout(FlowLayout.CENTER));
 			
-			container.add(new JButton("Add to Cart"));
+			JButton addToCartButton = new JButton("Add to Cart");
+			AddToCartButtonListener addToCartListener = new AddToCartButtonListener(media);
+			addToCartButton.addActionListener(addToCartListener);
+			
+			container.add(addToCartButton);
 			if(media instanceof Playable) {
 				JButton playButton = new JButton("Play");
 				PlayButtonListener playButtonListener = new PlayButtonListener((Playable) media);
@@ -177,8 +185,33 @@ public class StoreScreen extends JFrame{
 		}
 	}
 	
+	private class AddToCartButtonListener implements ActionListener {
+		private Media media;
+
+		public AddToCartButtonListener(Media media) {
+			this.media = media;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			cart.addMedia(media);
+			JDialog addToCartDialog = new JDialog();
+			addToCartDialog.setSize(400, 200);
+			addToCartDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			addToCartDialog.setLayout(new BorderLayout());
+			addToCartDialog.setLocationRelativeTo(null);
+			
+			JLabel content = new JLabel("Added " + media.getTitle() + " to cart!", SwingConstants.CENTER);
+			content.setFont(content.getFont().deriveFont(content.getFont().getSize() + 5.0f));
+			addToCartDialog.add(content, BorderLayout.CENTER);
+			
+			addToCartDialog.setVisible(true);
+		}
+	}
+	
 	public static void main(String[] args) {
 		Store store = new Store();
+		Cart cart = new Cart();
 		
 		store.addMedia(new DigitalVideoDisc("Mashle"));
 		store.addMedia(new DigitalVideoDisc("Re:zero"));
@@ -191,6 +224,6 @@ public class StoreScreen extends JFrame{
 		store.addMedia(new Book("Genshin", "Action", 12));
 		store.addMedia(new DigitalVideoDisc("Mashle 2"));
 		
-		new StoreScreen(store);
+		new StoreScreen(store, cart);
 	}
 }
