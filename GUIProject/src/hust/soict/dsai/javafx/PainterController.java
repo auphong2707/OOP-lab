@@ -2,6 +2,7 @@ package hust.soict.dsai.javafx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -12,6 +13,9 @@ public class PainterController {
 
     @FXML
     private Pane drawingAreaPane;
+    
+    @FXML private RadioButton penRB;
+    @FXML private RadioButton eraserRB;
 
     @FXML
     void clearButtonPressed(ActionEvent event) {
@@ -20,8 +24,13 @@ public class PainterController {
 
     @FXML
     void drawingAreaMouseDragged(MouseEvent event) {
+    	Color color = null;
+    	
+    	if(penRB.isSelected()) color = Color.BLACK;
+    	else if(eraserRB.isSelected()) color = Color.WHITE;
+    	
     	Circle newCircle = new Circle(event.getX(),
-    			event.getY(), 4, Color.BLACK);
+    			event.getY(), 4, color);
     	drawingAreaPane.getChildren().add(newCircle);
     }
 }
