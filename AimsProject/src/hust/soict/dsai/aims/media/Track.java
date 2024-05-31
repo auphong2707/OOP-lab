@@ -39,8 +39,11 @@ public class Track implements Playable{
 	}
 
 	@Override
-	public void play() {
-		System.out.println("Playing DVD: " + this.title);
-		System.out.println("DVD length: " + this.length);
+	public String play() {
+		StringBuilder resBuilder = new StringBuilder();
+		resBuilder.append("Playing DVD: " + this.title + '\n');
+		resBuilder.append("DVD length: " + this.length + '\n');
+		
+		return resBuilder.toString();
 	}
 }

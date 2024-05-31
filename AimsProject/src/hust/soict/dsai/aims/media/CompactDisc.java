@@ -48,11 +48,14 @@ public class CompactDisc extends Disc implements Playable{
 	}
 
 	@Override
-	public void play() {
+	public String play() {
+		StringBuilder resBuilder = new StringBuilder();
 		for(int i = 0; i < tracks.size(); ++i) {
-			System.out.println("Track " + i + ": ");
-			tracks.get(i).play();
+			resBuilder.append("Track " + i + ": " + '\n');
+			resBuilder.append(tracks.get(i).play());
 		}
+		
+		return resBuilder.toString();
 	}
 
 	@Override

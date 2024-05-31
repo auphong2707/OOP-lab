@@ -4,21 +4,27 @@ import java.lang.Math;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
@@ -44,6 +50,8 @@ public class StoreScreen extends JFrame{
 		setVisible(true);
 		setTitle("Store");
 		setSize(1024, 768);
+		
+		setLocationRelativeTo(null);
 	}
 	
 	JPanel createNorth() {
@@ -126,7 +134,11 @@ public class StoreScreen extends JFrame{
 			
 			container.add(new JButton("Add to Cart"));
 			if(media instanceof Playable) {
-				container.add(new JButton("Play"));
+				JButton playButton = new JButton("Play");
+				PlayButtonListener playButtonListener = new PlayButtonListener((Playable) media);
+				
+				playButton.addActionListener(playButtonListener);
+				container.add(playButton);
 			}
 			
 			this.add(Box.createVerticalGlue());
@@ -136,6 +148,32 @@ public class StoreScreen extends JFrame{
 			this.add(container);
 			
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		}
+	}
+	
+	private class PlayButtonListener implements ActionListener {
+		private Playable playableMedia;
+		
+		public PlayButtonListener(Playable playableMedia) {
+			this.playableMedia = playableMedia;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JDialog playDialog = new JDialog();
+			playDialog.setSize(400, 200);
+			playDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			playDialog.setLayout(new BorderLayout());
+			playDialog.setLocationRelativeTo(null);
+			
+			String htmlText = "<html>" + playableMedia.play().replace("\n", "<br>") + "</html>";
+			JLabel content = new JLabel(htmlText, SwingConstants.CENTER);
+			content.setFont(content.getFont().deriveFont(content.getFont().getSize() + 5.0f));
+			
+			playDialog.add(content, BorderLayout.CENTER);
+			System.out.println(playableMedia.play());
+			
+			playDialog.setVisible(true);
 		}
 	}
 	
