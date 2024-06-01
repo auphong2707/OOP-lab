@@ -96,4 +96,21 @@ public class Cart {
 	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder resBuilder = new StringBuilder();
+		resBuilder.append("**********************************************\n");
+		resBuilder.append("Ordered Items:\n");
+		for(int i = 0; i < itemsOrdered.size(); ++i) {
+			Media disc = itemsOrdered.get(i);
+			resBuilder.append((i + 1) + ". " + disc + '\n');
+		}
+		resBuilder.append("Total cost: " + totalCost() + '\n');
+		resBuilder.append("**********************************************\n");
+		
+		return resBuilder.toString();
+	}
+	
+	
 }

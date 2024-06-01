@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.screen;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import hust.soict.dsai.aims.cart.Cart;
@@ -18,27 +19,21 @@ public class CartScreenController {
 	
 	private Cart cart;
 	
-	@FXML
-	private TableView<Media> tbMedia;
+	@FXML private TableView<Media> tbMedia;
 	
-	@FXML
-	private TableColumn<Media, String> colMediaTitle;
+	@FXML private TableColumn<Media, String> colMediaTitle;
+	@FXML private TableColumn<Media, String> colMediaCategory;
+	@FXML private TableColumn<Media, Float> colMediaCost;
 	
-	@FXML
-	private TableColumn<Media, String> colMediaCategory;
-	
-	@FXML
-	private TableColumn<Media, Float> colMediaCost;
-	
-	@FXML
-	private Button btnPlay;
-	
-	@FXML
-	private Button btnRemove;
+	@FXML private Button btnPlay;
+	@FXML private Button btnRemove;
 	
 	@FXML private TextField tfFilter;
 	@FXML private RadioButton radioBtnFilterId;
 	@FXML private RadioButton radioBtnFilterTitle;
+	
+	@FXML private Label lbTotalCost;
+	@FXML private Button btnPlaceOrder;
 	
 	public CartScreenController(Cart cart) {
 		super();
@@ -57,6 +52,7 @@ public class CartScreenController {
 				new PropertyValueFactory<Media, Float>("cost"));
 		
 		tbMedia.setItems(this.cart.getItemsOrdered());
+		lbTotalCost.setText(cart.totalCost() + "$");
 		
 		btnPlay.setVisible(false);
 		btnRemove.setVisible(false);
@@ -126,6 +122,32 @@ public class CartScreenController {
 		FilteredList<Media> filteredCartItems = new FilteredList<Media>(cart.getItemsOrdered(), filter);
 		
 		tbMedia.setItems(filteredCartItems);
+	}
+	
+	@FXML
+	private void btnPlaceOrderPressed(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Place Order");
+        alert.setHeaderText(null);
+        alert.setContentText("Do you want to place order this cart?\n\n" + cart);
+        alert.setWidth(600);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent()) {
+        	if(result.get() == ButtonType.OK) {
+        		cart.emptyCart();
+        		lbTotalCost.setText("0$");
+        		
+        		Alert nextAlert = new Alert(AlertType.INFORMATION);
+        		
+        		nextAlert.setTitle("Thanks");
+                nextAlert.setHeaderText(null);
+        		nextAlert.setContentText("Thank you for your confirmation!");
+        		
+        		nextAlert.showAndWait();
+        	}
+        }
+        
 	}
 	
 }
