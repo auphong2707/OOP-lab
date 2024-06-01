@@ -31,6 +31,7 @@ public class CartScreen extends JFrame{
 		this.setVisible(true);
 		this.setSize(1024, 768);
 		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		Platform.runLater(new Runnable() {
 
