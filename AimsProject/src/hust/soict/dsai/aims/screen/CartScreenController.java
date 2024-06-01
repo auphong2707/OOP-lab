@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CartScreenController {
@@ -79,6 +80,18 @@ public class CartScreenController {
 	void btnRemovePressed(ActionEvent event) {
 		Media media = tbMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
+	}
+	
+	@FXML
+	void btnPlayPressed(ActionEvent event) {
+		Playable media = (Playable) tbMedia.getSelectionModel().getSelectedItem();
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Playing");
+        alert.setHeaderText(null);
+        alert.setContentText(media.play());
+
+        alert.showAndWait();
 	}
 	
 }
