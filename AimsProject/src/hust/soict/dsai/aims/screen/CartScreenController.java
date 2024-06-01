@@ -1,7 +1,11 @@
 package hust.soict.dsai.aims.screen;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.util.Optional;
 import java.util.function.Predicate;
+
+import javax.swing.JFrame;
 
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
@@ -12,13 +16,16 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class CartScreenController {
 	
 	private Cart cart;
+	private JFrame frame;
 	
 	@FXML private TableView<Media> tbMedia;
 	
@@ -36,9 +43,10 @@ public class CartScreenController {
 	@FXML private Label lbTotalCost;
 	@FXML private Button btnPlaceOrder;
 	
-	public CartScreenController(Cart cart) {
+	public CartScreenController(Cart cart, JFrame frame) {
 		super();
 		this.cart = cart;
+		this.frame = frame;
 	}
 	
 	@FXML
@@ -157,4 +165,9 @@ public class CartScreenController {
         
 	}
 	
+	@FXML
+	private void exitScreen(ActionEvent event) {
+		WindowEvent closingEvent = new WindowEvent(frame, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closingEvent);
+	}
 }

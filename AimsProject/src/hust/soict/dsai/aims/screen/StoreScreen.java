@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -54,6 +56,7 @@ public class StoreScreen extends JFrame{
 		setVisible(true);
 		setTitle("Store");
 		setSize(1024, 768);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setLocationRelativeTo(null);
 	}
@@ -68,6 +71,8 @@ public class StoreScreen extends JFrame{
 	}
 	
 	JMenuBar createMenuBar() {
+		StoreScreen ref = this;
+		
 		JMenu menu = new JMenu("Options");
 		
 		JMenu smUpdateStore = new JMenu("Update Store");
@@ -76,8 +81,24 @@ public class StoreScreen extends JFrame{
 		smUpdateStore.add(new JMenuItem("Add DVD"));
 		
 		menu.add(smUpdateStore);
+		JMenuItem cartItem = new JMenuItem("View cart");
+		cartItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CartScreen cartScreen = new CartScreen(cart);
+				cart.print();
+				ref.setVisible(false);
+				cartScreen.addWindowListener(new WindowAdapter() {
+		            @Override
+		            public void windowClosing(WindowEvent e) {
+		                ref.setVisible(true);
+		            }
+		        });
+			}
+		});
+		
 		menu.add(new JMenuItem("View store"));
-		menu.add(new JMenuItem("View cart"));
+		menu.add(cartItem);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -87,6 +108,8 @@ public class StoreScreen extends JFrame{
 	}
 	
 	JPanel createHeader() {
+		StoreScreen ref = this;
+		
 		JPanel header = new JPanel();
 		header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
 		
@@ -94,14 +117,27 @@ public class StoreScreen extends JFrame{
 		title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
 		title.setForeground(Color.CYAN);
 		
-		JButton cart = new JButton("View cart");
-		cart.setPreferredSize(new Dimension(100, 50));
-		cart.setMaximumSize(new Dimension(100, 50));
+		JButton viewCartBtn = new JButton("View cart");
+		viewCartBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CartScreen cartScreen = new CartScreen(cart);
+				ref.setVisible(false);
+				cartScreen.addWindowListener(new WindowAdapter() {
+		            @Override
+		            public void windowClosing(WindowEvent e) {
+		                ref.setVisible(true);
+		            }
+		        });
+			}
+		});
+		viewCartBtn.setPreferredSize(new Dimension(100, 50));
+		viewCartBtn.setMaximumSize(new Dimension(100, 50));
 		
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(title);
 		header.add(Box.createHorizontalGlue());
-		header.add(cart);
+		header.add(viewCartBtn);
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
 		return header;
