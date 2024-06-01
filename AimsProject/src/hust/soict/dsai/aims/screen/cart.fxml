@@ -82,7 +82,7 @@
             <HBox alignment="CENTER_RIGHT" spacing="10.0">
                <children>
                   <Button fx:id="btnPlay" alignment="CENTER" mnemonicParsing="false" prefWidth="60.0" text="Play" textAlignment="CENTER" />
-                  <Button fx:id="btnRemove" alignment="CENTER" mnemonicParsing="false" prefWidth="60.0" text="Remove" textAlignment="CENTER" />
+                  <Button fx:id="btnRemove" alignment="CENTER" mnemonicParsing="false" onAction="#btnRemovePressed" prefWidth="60.0" text="Remove" textAlignment="CENTER" />
                </children>
                <padding>
                   <Insets right="10.0" top="5.0" />
