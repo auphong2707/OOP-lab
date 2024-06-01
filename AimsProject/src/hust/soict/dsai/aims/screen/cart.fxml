@@ -60,13 +60,13 @@
                </padding>
                <children>
                   <Label text="Filter" />
-                  <TextField />
-                  <RadioButton mnemonicParsing="false" selected="true" text="By ID">
+                  <TextField fx:id="tfFilter" />
+                  <RadioButton fx:id="radioBtnFilterId" mnemonicParsing="false" selected="true" text="By ID">
                      <toggleGroup>
                         <ToggleGroup fx:id="filterCategory" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="206.0" layoutY="24.0" mnemonicParsing="false" text="By Title" toggleGroup="$filterCategory" />
+                  <RadioButton fx:id="radioBtnFilterTitle" layoutX="206.0" layoutY="24.0" mnemonicParsing="false" text="By Title" toggleGroup="$filterCategory" />
                </children>
             </HBox>
             <TableView fx:id="tbMedia">
