@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javax.swing.JFrame;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.beans.value.ChangeListener;
@@ -121,7 +122,12 @@ public class CartScreenController {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Playing");
         alert.setHeaderText(null);
-        alert.setContentText(media.play());
+        try {
+        	alert.setContentText(media.play());
+        }
+        catch (PlayerException e) {
+        	alert.setContentText(e.getMessage());
+        }
 
         alert.showAndWait();
 	}

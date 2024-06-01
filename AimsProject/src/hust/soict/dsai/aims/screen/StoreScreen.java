@@ -34,6 +34,7 @@ import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.store.Store;
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -273,12 +274,19 @@ public class StoreScreen extends JFrame{
 			playDialog.setLayout(new BorderLayout());
 			playDialog.setLocationRelativeTo(null);
 			
-			String htmlText = "<html>" + playableMedia.play().replace("\n", "<br>") + "</html>";
+			
+			String htmlText = "";
+			try {
+				htmlText = "<html>" + playableMedia.play().replace("\n", "<br>") + "</html>";
+			} catch (PlayerException ex) {
+	        	htmlText = ex.getMessage();
+	        }
+			
+			
 			JLabel content = new JLabel(htmlText, SwingConstants.CENTER);
 			content.setFont(content.getFont().deriveFont(content.getFont().getSize() + 5.0f));
 			
 			playDialog.add(content, BorderLayout.CENTER);
-			System.out.println(playableMedia.play());
 			
 			playDialog.setVisible(true);
 		}
