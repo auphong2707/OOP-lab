@@ -75,7 +75,12 @@ public class CartScreenController {
 		tfFilter.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {	
+				if(newValue.equals("")) {
+					tbMedia.setItems(cart.getItemsOrdered());
+					return;
+				}
+				
 				showFilteredMedia(newValue);
 			}
 		});
@@ -109,7 +114,7 @@ public class CartScreenController {
         alert.showAndWait();
 	}
 	
-	private void showFilteredMedia(String value) {	
+	private void showFilteredMedia(String value) {
 		Predicate <Media> filter = null;
 		if (radioBtnFilterId.isSelected()) {
 			filter = (m -> value.equals(String.valueOf(m.getId())));
