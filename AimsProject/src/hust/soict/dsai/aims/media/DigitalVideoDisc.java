@@ -5,9 +5,6 @@ import java.util.Objects;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class DigitalVideoDisc extends Disc implements Playable{
-	private String director;
-	private int length;
-	
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		super(nbMedia++, title, category, director, length, cost);
 	}

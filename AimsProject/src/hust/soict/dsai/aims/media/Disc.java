@@ -2,8 +2,8 @@ package hust.soict.dsai.aims.media;
 
 public class Disc extends Media {
 	
-	private int length;
-	private String director;
+	int length;
+	String director;
 	
 	public Disc(int id, String title, String category, String director, int length, float cost) {
 		super(id, title, category, cost);
