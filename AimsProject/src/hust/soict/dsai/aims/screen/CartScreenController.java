@@ -99,7 +99,7 @@ public class CartScreenController {
 	}
 	
 	@FXML
-	private void btnPlayPressed(ActionEvent event) {
+	private void btnPlayPressed(ActionEvent event) { 
 		Playable media = (Playable) tbMedia.getSelectionModel().getSelectedItem();
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
