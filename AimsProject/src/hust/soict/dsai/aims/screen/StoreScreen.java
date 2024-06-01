@@ -41,17 +41,21 @@ import javax.swing.Box;
 public class StoreScreen extends JFrame{
 	private Store store;
 	private Cart cart;
+	Container cp;
+	JPanel centerPanel;
 	
 	public StoreScreen(Store store, Cart cart)
 	{
 		this.store = store;
 		this.cart = cart;
 		
-		Container cp = getContentPane();
+		cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
+		centerPanel = createCenter();
+		
 		cp.add(createNorth(), BorderLayout.NORTH);
-		cp.add(createCenter(), BorderLayout.CENTER);
+		cp.add(centerPanel, BorderLayout.CENTER);
 		
 		setVisible(true);
 		setTitle("Store");
@@ -76,9 +80,68 @@ public class StoreScreen extends JFrame{
 		JMenu menu = new JMenu("Options");
 		
 		JMenu smUpdateStore = new JMenu("Update Store");
-		smUpdateStore.add(new JMenuItem("Add Book"));
-		smUpdateStore.add(new JMenuItem("Add CD"));
-		smUpdateStore.add(new JMenuItem("Add DVD"));
+		JMenuItem addBookItem = new JMenuItem("Add Book");
+		JMenuItem addCDItem = new JMenuItem("Add CD");
+		JMenuItem addDVDItem = new JMenuItem("Add DVD");
+		
+		addBookItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddBookToStoreScreen sc = new AddBookToStoreScreen(store);
+				sc.addWindowListener(new WindowAdapter() {
+		            @Override
+		            public void windowClosed(WindowEvent e) {
+		            	cp.remove(centerPanel);
+						centerPanel = createCenter();
+						cp.add(centerPanel, BorderLayout.CENTER);
+						cp.revalidate();
+						cp.repaint();
+		            }
+		        });
+			}
+			
+		});
+		
+		addCDItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddCompactDiscToStoreScreen sc = new AddCompactDiscToStoreScreen(store);
+				
+				sc.addWindowListener(new WindowAdapter() {
+		            @Override
+		            public void windowClosed(WindowEvent e) {
+		            	cp.remove(centerPanel);
+						centerPanel = createCenter();
+						cp.add(centerPanel, BorderLayout.CENTER);
+						cp.revalidate();
+						cp.repaint();
+		            }
+		        });
+			}
+		});
+		
+		addDVDItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddDigitalVideoDiscToStoreScreen sc = new AddDigitalVideoDiscToStoreScreen(store);
+				
+				sc.addWindowListener(new WindowAdapter() {
+		            @Override
+		            public void windowClosed(WindowEvent e) {
+		            	cp.remove(centerPanel);
+						centerPanel = createCenter();
+						cp.add(centerPanel, BorderLayout.CENTER);
+						cp.revalidate();
+						cp.repaint();
+		            }
+		        });
+			}
+			
+		});
+		
+		smUpdateStore.add(addBookItem);
+		smUpdateStore.add(addCDItem);
+		smUpdateStore.add(addDVDItem);
 		
 		menu.add(smUpdateStore);
 		JMenuItem cartItem = new JMenuItem("View cart");
