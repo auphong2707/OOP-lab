@@ -2,6 +2,8 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Objects;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class DigitalVideoDisc extends Disc implements Playable{
 	private String director;
 	private int length;
@@ -61,11 +63,15 @@ public class DigitalVideoDisc extends Disc implements Playable{
 	}
 
 	@Override
-	public String play() {
-		StringBuilder resBuilder = new StringBuilder();
-		resBuilder.append("Playing DVD: " + this.getTitle() + '\n');
-		resBuilder.append("DVD length: " + this.getLength() + '\n');
-		
-		return resBuilder.toString();
+	public String play() throws PlayerException{
+		if (this.getLength() > 0) {
+			StringBuilder resBuilder = new StringBuilder();
+			resBuilder.append("Playing DVD: " + this.getTitle() + '\n');
+			resBuilder.append("DVD length: " + this.getLength() + '\n');
+			
+			return resBuilder.toString();
+		} else {
+			throw new PlayerException("ERROR: DVD length is non-positive");
+		}
 	}
 }
