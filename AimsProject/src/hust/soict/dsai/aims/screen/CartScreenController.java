@@ -8,6 +8,7 @@ import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,6 +81,13 @@ public class CartScreenController {
 				showFilteredMedia(newValue);
 			}
 		});
+		
+		cart.getItemsOrdered().addListener(new ListChangeListener<Media>() {
+		    @Override
+		    public void onChanged(Change<? extends Media> change) {
+		        lbTotalCost.setText(cart.totalCost() + "$");
+		    }
+		});
 	}
 	
 	private void updateButtonBar(Media media) {
@@ -136,7 +144,6 @@ public class CartScreenController {
         if(result.isPresent()) {
         	if(result.get() == ButtonType.OK) {
         		cart.emptyCart();
-        		lbTotalCost.setText("0$");
         		
         		Alert nextAlert = new Alert(AlertType.INFORMATION);
         		
